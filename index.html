@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="BH Team">
+<meta name="theme-color" content="#13110E">
+<title>Bestattungshaus Team App</title>
+<style>
+*{-webkit-tap-highlight-color:transparent;box-sizing:border-box}
+body{margin:0;background:#13110E;font-family:Georgia,serif;-webkit-text-size-adjust:100%}
+#root{min-height:100vh}
+input,textarea,select{font-size:16px!important}
+#splash{position:fixed;inset:0;background:#13110E;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s}
+</style>
+</head>
+<body>
+<div id="splash">
+  <div style="font-size:52px;margin-bottom:16px">⚜</div>
+  <div style="color:#C5A55A;font-size:20px;font-weight:700;margin-bottom:8px;font-family:Georgia,serif">Bestattungshaus</div>
+  <div style="color:#555;font-size:14px;font-family:Georgia,serif">Team App wird geladen …</div>
+</div>
+<div id="root"></div>
+
+<!-- Lade React & Supabase zuerst, dann Babel & App -->
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+// Babel async laden damit Splash-Screen sofort erscheint
+window.onload = function() {
+  var s = document.createElement('script');
+  s.src = 'https://unpkg.com/@babel/standalone@7.23.6/babel.min.js';
+  s.onload = function() {
+    var app = document.createElement('script');
+    app.type = 'text/babel';
+    app.setAttribute('data-presets', 'react,env');
+    app.src = 'app.js';
+    app.onload = function() {
+      Babel.transformScriptTags();
+      setTimeout(function(){
+        var splash = document.getElementById('splash');
+        if(splash) splash.style.opacity = '0';
+        setTimeout(function(){ if(splash) splash.remove(); }, 500);
+      }, 500);
+    };
+    document.body.appendChild(app);
+  };
+  document.head.appendChild(s);
+};
+</script>
+</body>
+</html>

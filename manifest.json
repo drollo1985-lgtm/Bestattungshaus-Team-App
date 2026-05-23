@@ -1,0 +1,16 @@
+{
+  "name": "Bestattungshaus Team App",
+  "short_name": "BH Team",
+  "description": "Interne Team-App für das Bestattungshaus",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#13110E",
+  "theme_color": "#13110E",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚜</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
